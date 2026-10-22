@@ -13,18 +13,41 @@ function escapeHtml(str) {
 function renderSchool(data) {
   const school = data.school || {};
   document.querySelectorAll("#school-name").forEach(el => {
-    el.textContent = school.short_name || school.name || "Сувошкола";
+    el.textContent = school.short_name || school.name || "Сувинская СОШ";
   });
   document.querySelectorAll("#footer-name").forEach(el => {
-    el.textContent = school.short_name || school.name || "Сувошкола";
+    el.textContent = school.short_name || school.name || "Сувинская СОШ";
   });
   if (school.name) document.title = `${school.name} — события и новости`;
-  if (school.phone || school.email || school.address) {
+
+  // О школе
+  const aboutEl = document.getElementById("about-text");
+  if (aboutEl) {
+    if (school.about) {
+      aboutEl.innerHTML = `<p>${escapeHtml(school.about)}</p>`;
+    } else {
+      aboutEl.innerHTML = "<p>Информация о школе появится позже.</p>";
+    }
+  }
+
+  // Контакты
+  const contactsEl = document.getElementById("contacts-text");
+  if (contactsEl) {
     const contacts = [];
-    if (school.address) contacts.push("📍 " + school.address);
-    if (school.phone) contacts.push("📞 " + school.phone);
-    if (school.email) contacts.push("✉️ " + school.email);
-    document.getElementById("contacts-text").innerHTML = contacts.join("<br>");
+    if (school.director) contacts.push("<strong>Директор:</strong> " + escapeHtml(school.director));
+    if (school.address) contacts.push("📍 " + escapeHtml(school.address));
+    if (school.phone) contacts.push("📞 " + escapeHtml(school.phone));
+    if (school.email) contacts.push("✉️ " + escapeHtml(school.email));
+    if (school.city) contacts.push("🏢 " + escapeHtml(school.city));
+    contactsEl.innerHTML = contacts.length
+      ? contacts.join("<br>")
+      : "Информация о контактах появится позже.";
+  }
+
+  // Ссылка на VK
+  if (school.vk) {
+    const vkLink = document.getElementById("vk-link");
+    if (vkLink) vkLink.href = school.vk;
   }
 }
 
