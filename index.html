@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сувошкола — события и новости</title>
+  <title>Сувинская СОШ — события и новости</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
         <a href="#about">О школе</a>
         <a href="#events">События</a>
         <a href="#news">Новости</a>
+        <a href="#staff">Педагоги</a>
         <a href="#contacts">Контакты</a>
       </nav>
     </div>
@@ -21,14 +22,32 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Добро пожаловать в нашу школу!</h1>
-      <p id="school-desc">МБОУ «Сувинская СОШ» — с. Суво, Баргузинский район, Республика Бурятия. Здесь публикуются актуальные новости и предстоящие мероприятия.</p>
-      <a class="vk-btn" id="vk-link" href="https://vk.ru/club216050545" target="_blank" rel="noopener">ВКонтакте</a>
+      <h1 id="hero-title">Добро пожаловать в нашу школу!</h1>
+      <p id="school-desc">МБОУ «Сувинская СОШ» — с. Суво, Баргузинский район, Республика Бурятия.</p>
+      <div class="hero-buttons">
+        <a class="vk-btn" id="vk-link" href="https://vk.ru/club216050545" target="_blank" rel="noopener">ВКонтакте</a>
+        <a class="site-btn" id="gov-site" href="#" target="_blank" rel="noopener">Официальный сайт</a>
+      </div>
     </section>
 
     <section id="about">
       <h2>О школе</h2>
       <div id="about-text"></div>
+    </section>
+
+    <section id="history">
+      <h2>История школы</h2>
+      <div id="history-list" class="timeline"></div>
+    </section>
+
+    <section id="infrastructure">
+      <h2>Наша инфраструктура</h2>
+      <div id="infra-list" class="cards"></div>
+    </section>
+
+    <section id="achievements">
+      <h2>Достижения</h2>
+      <ul id="achievements-list" class="plain-list"></ul>
     </section>
 
     <section id="events">
@@ -46,15 +65,26 @@
       <div id="news-list" class="news-list"></div>
     </section>
 
+    <section id="staff">
+      <h2>Педагогический коллектив</h2>
+      <p class="section-note" id="director-line"></p>
+      <div id="staff-list" class="staff-grid"></div>
+    </section>
+
+    <section id="circles">
+      <h2>Кружки и секции</h2>
+      <div id="circles-list" class="chip-wrap"></div>
+    </section>
+
     <section id="contacts">
       <h2>Контакты</h2>
-      <p id="contacts-text">Информация о контактах появится позже.</p>
+      <div id="contacts-text" class="contacts-card"></div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> <span id="footer-name">Сувошкола</span></p>
+      <p>&copy; <span id="year"></span> <span id="footer-name">Сувинская СОШ</span></p>
     </div>
   </footer>
 
