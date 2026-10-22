@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МБОУ «Сувинская СОШ» | Баргузинский район</title>
+    <style>
+        :root {
+            --primary-color: #1a5f7a; /* Цвет байкальской воды */
+            --secondary-color: #2c8c48; /* Цвет баргузинской тайги */
+            --accent-color: #f4a261; /* Тёплый акцент */
+            --bg-light: #f8f9fa;
+            --text-dark: #2b2d42;
+            --white: #ffffff;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Герой-секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 95, 122, 0.8), rgba(44, 140, 72, 0.8)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(244, 162, 97, 0.4);
+        }
+
+        /* Секции */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* О школе */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .about-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .director-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .director-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* События */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .event-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-tag {
+            display: inline-block;
+            background: #e8f4f8;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Контакты */
+        .contacts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .vk-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0077FF;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .vk-link:hover {
+            background: #005ce6;
+        }
+
+        /* Подвал */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .about-grid, .contacts-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Для простоты на мобильном скрываем меню, можно добавить бургер */
+            section { padding: 3rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="logo">
+            🏫 Сувинская школа
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#about">О школе</a></li>
+            <li><a href="#events">События</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="hero" id="home">
+        <h1>МБОУ «Сувинская средняя общеобразовательная школа»</h1>
+        <p>Воспитываем будущее в сердце Баргузинского края. Традиции, знания и развитие для каждого ученика.</p>
+        <a href="#events" class="btn">Узнать о жизни школы</a>
+    </section>
+
+    <!-- О школе -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">О нашей школе</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>📚 Образование и развитие</h3>
+                <p>Наша школа является центром образования и культуры села Суво. Мы гордимся нашими педагогами, которые не только дают глубокие знания, но и воспитывают активных, творческих и ответственных граждан Бурятии и России.</p>
+                <div class="director-info">
+                    <div class="director-avatar">С</div>
+                    <div>
+                        <strong>Степанова Лариса Геннадьевна</strong><br>
+                        <span style="color: #666; font-size: 0.9rem;">Директор школы</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-card" style="border-left-color: var(--primary-color);">
+                <h3>🌿 Природа и среда</h3>
+                <p>Школа расположена в живописном Баргузинском районе. Мы активно участвуем в экологических проектах, развиваем краеведческое направление и сохраняем культурные традиции нашего края. В настоящее время ведутся работы по сохранению и капитальному ремонту здания школы для создания максимально комфортных условий обучения.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- События -->
+    <section id="events" style="background-color: #eef2f5;" class="fade-in">
+        <h2 class="section-title">Прошедшие события и новости</h2>
+        <div class="events-grid">
+            <!-- Событие 1 -->
+            <div class="event-card">
+                <div class="event-date">2024-2025 уч. год</div>
+                <div class="event-image">🔥</div>
+                <div class="event-content">
+                    <span class="event-tag">Достижения</span>
+                    <h3>Победа дружины «Пламя»</h3>
+                    <p>Дружина юных пожарных «Пламя» нашей школы заняла <strong>первое место</strong> в районном смотре-конкурсе! Ребята продемонстрировали отличные знания правил пожарной безопасности и слаженность командной работы.</p>
+                </div>
+            </div>
+
+            <!-- Событие 2 -->
+            <div class="event-card">
+                <div class="event-date">Методическая работа</div>
+                <div class="event-image">📖</div>
+                <div class="event-content">
+                    <span class="event-tag">Образование</span>
+                    <h3>Районный семинар учителей</h3>
+                    <p>На базе Сувинской школы успешно прошёл районный семинар учителей русского языка и литературы. Педагоги обменялись опытом и обсудили новые подходы к обучению в современных условиях.</p>
+                </div>
+            </div>
+
+            <!-- Событие 3 -->
+            <div class="event-card">
+                <div class="event-date">Развитие школы</div>
+                <div class="event-image">🏗️</div>
+                <div class="event-content">
+                    <span class="event-tag">Инфраструктура</span>
+                    <h3>Планы по капитальному ремонту</h3>
+                    <p>Принято важное решение о сохранении и проведении капитального ремонта школы. Это позволит создать безопасную и современную образовательную среду для наших учеников.</p>
+                </div>
+            </div>
+
+            <!-- Событие 4 -->
+            <div class="event-card">
+                <div class="event-date">Традиции</div>
+                <div class="event-image">🍂</div>
+                <div class="event-content">
+                    <span class="event-tag">Мероприятия</span>
+                    <h3>День знаний и Осенний бал</h3>
+                    <p>Торжественные линейки, посвящённые началу учебного года, и традиционные осенние мероприятия прошли с активным участием учащихся всех классов, педагогов и родителей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="fade-in">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts-container">
+            <div>
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">Свяжитесь с нами</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <strong>Адрес:</strong><br>
+                        Республика Бурятия, Баргузинский район,<br>село Суво, ул. Кабашова
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🏛️</span>
+                    <div>
+                        <strong>Полное наименование:</strong><br>
+                        Муниципальное бюджетное общеобразовательное учреждение «Сувинская средняя общеобразовательная школа»
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <div>
+                        <strong>Электронная почта:</strong><br>
+                        suvinskaya.school@example.ru
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Мы в социальных сетях</h3>
+                <p style="margin-bottom: 1.5rem; color: #555;">Следите за самыми свежими новостями, фотоотчётами и объявлениями в нашей официальной группе ВКонтакте.</p>
+                <a href="https://vk.ru/club216050545" target="_blank" class="vk-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg>
+                    Группа ВКонтакте
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>© 2024 МБОУ «Сувинская средняя общеобразовательная школа»</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Баргузинский район, Республика Бурятия</p>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
