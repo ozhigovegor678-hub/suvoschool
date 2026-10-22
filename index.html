@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сувошкола — события и новости</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">🏫 <span id="school-name">Сувошкола</span></a>
+      <nav class="nav">
+        <a href="#events">События</a>
+        <a href="#news">Новости</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Добро пожаловать в нашу школу!</h1>
+      <p id="school-desc">Здесь публикуются актуальные новости и предстоящие мероприятия.</p>
+    </section>
+
+    <section id="events">
+      <h2>Мероприятия</h2>
+      <div class="tabs">
+        <button class="tab active" data-status="all">Все</button>
+        <button class="tab" data-status="future">Предстоящие</button>
+        <button class="tab" data-status="past">Прошедшие</button>
+      </div>
+      <div id="events-list" class="cards"></div>
+    </section>
+
+    <section id="news">
+      <h2>Новости</h2>
+      <div id="news-list" class="news-list"></div>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p id="contacts-text">Информация о контактах появится позже.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> <span id="footer-name">Сувошкола</span></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

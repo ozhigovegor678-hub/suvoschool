@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Шапка */
+.site-header {
+  background: #2c3e92;
+  color: #fff;
+  padding: 14px 0;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.nav a {
+  color: #e6e9ff;
+  text-decoration: none;
+  margin-left: 18px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Заголовки */
+.hero {
+  text-align: center;
+  padding: 40px 0 24px;
+}
+
+.hero h1 {
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  border-bottom: 3px solid #2c3e92;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Вкладки */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #2c3e92;
+}
+
+.tab.active {
+  background: #2c3e92;
+  color: #fff;
+  border-color: #2c3e92;
+}
+
+/* Карточки событий */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-left: 5px solid #2c3e92;
+}
+
+.card.past {
+  border-left-color: #999;
+  opacity: 0.85;
+}
+
+.card .badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.badge.future { background: #27ae60; }
+.badge.past   { background: #7f8c8d; }
+
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.card .date {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+/* Новости */
+.news-list article {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.news-list article h3 {
+  margin-bottom: 6px;
+}
+
+.news-list .date {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+/* Контакты и футер */
+#contacts p {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.site-footer {
+  background: #2c3e92;
+  color: #fff;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .nav a { margin-left: 0; margin-right: 14px; }
+  .hero h1 { font-size: 1.5rem; }
+}
